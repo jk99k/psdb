@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/skins/index.css' %}">
+    </head>
+    <header>
+        <h1>Skin</h1>
+    </header>
+    {% if skins %}
+        <ul>
+            {% for skin in skins %}
+                <li><p>{{ skin.skin_id}}</p></li>
+                <img src="{{ MEDIA_URL }}{{ skin.image }}" alt="">
+            {% endfor %}
+        </ul>
+    {% endif %}
+</html>

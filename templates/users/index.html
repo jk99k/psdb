@@ -1,0 +1,45 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/basic/index.css' %}">
+        <link rel="stylesheet" href="{% static 'css/users/index.css' %}">
+    </head>
+
+    <body>
+        <!-- <header>
+            <a href="{% url 'home' %}">
+                <h1>Pixel Strike Database</h1>
+            </a>
+            <div id="h-right">
+                right
+            </div>
+        </header> -->
+        <main>
+            <div id="main-contents">
+                {% if users %}
+                    <ul>
+                        {% for user in users %}
+                            <li><p>{{ user.username }}</p></li>
+                            <a href="{% url 'users_detail' user.username %}"">Detail</a>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </main>
+        <nav>
+            <a href="{% url 'home' %}">
+                <h1>Pixel Strike Database</h1>
+            </a>
+            <a href="{% url 'users_index' %}">
+                <div class="nav-item">
+                    User
+                </div>
+            </a>
+            <a href="{% url 'skins_index' %}">
+                <div class="nav-item">
+                    Skin
+                </div>
+            </a>
+        </nav>
+</html>

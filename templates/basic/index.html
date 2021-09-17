@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/basic/index.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <main>
+            <div class="neu-box1" id="list-item">
+            </div>
+        </main>
+        <nav>
+            <a href="{% url 'home' %}">
+                <h1>Pixel Strike Database</h1>
+            </a>
+            <a href="{% url 'users_index' %}">
+                <div class="nav-item">
+                    User
+                </div>
+            </a>
+            <a href="{% url 'skins_index' %}">
+                <div class="nav-item">
+                    Skin
+                </div>
+            </a>
+        </nav>
+    </body>
+</html>
