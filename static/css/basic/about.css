@@ -1,26 +1,12 @@
-#home {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+* {
+    padding: 0;
+    margin: 0;
+    overflow-wrap: break-word;
 }
 
-#home h1 {
-    padding: 20px;
-}
-
-h2 { 
-    padding: 10px;
-    margin-left: 30px;
-}
-
-#skin-list {
-    display: flex;
-    flex-direction: row;
-    white-space: normal;
-    overflow-x: scroll;
-    padding: 15px;
+p {
+    font-size: 12px;
+    overflow-wrap: break-word;
 }
 
 #skin-item {
@@ -29,7 +15,6 @@ h2 {
     justify-content: space-between;
 
     width: 300px;
-    min-width: 300px;
     height: 200px;
     border-radius: 20px;
     background: #ecf0fe;
@@ -61,14 +46,10 @@ h2 {
                 -10px -10px 20px #ffffff;
 }
 
-.icon {
-    height: 20px;
-}
-
 #skin-status {
     display: flex;
     flex-direction: column;
-    width: 140px;
+    width: 130px;
 }
 
 #skin-name {
@@ -128,7 +109,7 @@ h2 {
     align-items: center;
     justify-content: flex-start;
 
-    width: 120px;
+    margin-top: 30px;
 }
 
 .user-icon-mini {
@@ -146,80 +127,99 @@ h2 {
                 -5px -5px 10px #ffffff;
 }
 
-#user-list {
-    display: flex;
-    flex-direction: row;
-    
-    overflow-x: scroll;
-    padding-bottom: 120px;
-    padding: 15px;
-}
+.neu-input {
+    height: 40px;
+    width: 100px;
+    padding: 10px;
+    margin: 0 10px 0 10px;
 
-#user-item {
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    height: 150px;
-    border-radius: 20px;
+    border: none;
+    outline:none;
+    border-radius: 10px;
     background: #ecf0fe;
-    box-shadow:  10px 10px 20px #d4d8e5,
-                -10px -10px 20px #ffffff;
-
-    transition: 0.1s;
-    transition-timing-function: ease;
-
-    margin: 10px 15px 10px 15px;
-    padding: 20px;
+    box-shadow: inset 5px 5px 10px #c9ccd8,
+                inset -5px -5px 10px #ffffff;
 }
 
-#user-item:hover {
-    box-shadow:  15px 15px 30px #d4d8e5,
-                -15px -15px 30px #ffffff;
-}
+form button {
+    border: none;
 
-.social {
-    display: flex;
-    align-items: center;
-    padding: 3px 0 3px 0;
-}
+    border-radius: 10px;
+    height: 40px;
+    width: 80px;
 
-
-.user-icon {
-    width: 50px;
-    height: 50px;
-    padding: 2px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    background: #ecf0fe;
+    background: linear-gradient(145deg, #fdffff, #d4d8e5);
     box-shadow:  5px 5px 10px #c9ccd8,
                 -5px -5px 10px #ffffff;
 }
 
-.status {
-    font-size: 12px;
+form button:hover {
+    background: linear-gradient(145deg, #d4d8e5, #fdffff);
+    box-shadow: 5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
 }
 
-#username {
-    font-size: 25px;
+#about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    width: 100vw;
+    height: 100vh;
+    background: #ecf0fe;
 }
 
+#catch {
+    margin-top: 40px;
+}
 
-.user-icon-mini {
-    width: 30px;
-    height: 30px;
+h3 {
+    text-align: center;
+}
 
-    padding: 2px;
+#skin-wrapper {
+    display: flex;
+    overflow-x: hidden;
+    padding: 40px 0 40px 0;
+}
 
+#skin-group1, #skin-group2, #skin-group3 {
+    display: flex;
+    animation: loop-slide 30s infinite linear 1s both;
+}
+
+@keyframes loop-slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+}
+
+#center-wrapper {
+    margin-top: 40px;
+    width: 100%;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-    border-radius: 50%;
-    background: #ecf0fe;
-    box-shadow:  5px 5px 10px #c9ccd8,
-                -5px -5px 10px #ffffff;
+.buttons {
+    border-radius: 10px;
+    background: #df6288;
+    box-shadow:  5px 5px 10px #be5374,
+                -5px -5px 10px #ff719c;
+    padding: 10px 40px;
+    margin: 30px 50px 120px 50px;
+    color: white;
+    transition: 0.3s;
+}
+
+.buttons:hover {
+    background: #df6288;
+    box-shadow:  10px 10px 20px #be5374,
+                -10px -10px 20px #ff719c;
 }

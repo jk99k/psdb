@@ -1,0 +1,309 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin: 20px;
+  font-size: 30px;
+}
+
+#skin-wrapper {
+  margin-top: 40px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#top-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: auto;
+  bottom: 0;
+
+  height: 40px;
+  width: 120px;
+  padding: 5px;
+  margin: 20px;
+  border-radius: 10px;
+
+  background: #95939f;
+  box-shadow:  5px 5px 10px #7f7d87,
+              -5px -5px 10px #aba9b7;
+
+  color: white;
+}
+
+.heart-button {
+    /* ボタン要素の大きさや色 */
+    position: relative;
+    display: inline-block;
+    background-color: #ef4b53;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+
+    box-shadow:  5px 5px 10px #cb4047,
+                -5px -5px 10px #ff565f;
+  
+    /* ボタンの文字の設定 */
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 0.1em;
+  
+    /* その他必要なスタイル */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.heart-button i {
+    color: #fff;
+    padding: 2px;
+}
+
+/* ハートの共通スタイル */
+.heart-button::before,
+.heart-button::after {
+  content: "";
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  opacity: 0;
+}
+
+/* 左上のハートのスタイル */
+.heart-button::before {
+  background-image: url('/static/icons/heart.svg');
+  top: 0;
+  left: -12px;
+}
+
+/* 右下のハートのスタイル */
+.heart-button::after {
+  background-image: url('/static/icons/heart-reverse.svg');
+  bottom: -6px;
+  right: -14px;
+}
+
+@keyframes heart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20px) scale(1.4);
+      opacity: 0;
+    }
+}
+
+/* ========= ホバー時のスタイル ======== */
+
+/* ボタンホバー時のスタイル */
+.heart-button:hover {
+  background-color: #fff;
+  border-color: #ef4b53;
+  color: #ef4b53;
+}
+
+.heart-button:hover i {
+    color: #ef4b53;
+}
+
+/* ボタンホバー時の左上のハートのスタイル */
+.heart-button:hover::before {
+  animation: heart 1.5s infinite ease-out;
+}
+
+/* ボタンホバー時の右下のハートのスタイル */
+.heart-button:hover::after {
+  animation: heart 1.5s 0.2s infinite ease-out;
+}
+
+#description-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+    height: 80px;
+}
+
+#skin-image {
+    height: 400px;
+    min-width: 240px;
+    width: 240px;
+    padding: 3px;
+    margin: 3px 3px 3px 10px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #ecf0fe;
+    box-shadow: 10px 10px 20px #c9ccd8,
+                -10px -10px 20px #ffffff;
+}
+
+#skin-status {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    margin: 3px;
+
+    border-radius: 10px;
+    background: #ecf0fe;
+    box-shadow:  10px 10px 20px #c9ccd8,
+                -10px -10px 20px #ffffff;
+}
+
+#skin-name {
+    font-size: 50px;
+}
+
+#skin-description {
+    font-size: 20px;
+   margin-bottom: 20px; 
+}
+
+#type-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+#low-res {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s;
+
+
+    margin-left: 10px;
+    height: 25px;
+    width: 100px;
+    border-radius: 3px;
+    background-color: #98c8bc;
+    box-shadow:  10px 10px 20px #81aaa0,
+                -10px -10px 20px #afe6d8;
+}
+
+#high-res {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s;
+
+    margin-left: 10px;
+    height: 25px;
+    width: 100px;
+    border-radius: 3px;
+    background: #e67f7f;
+    box-shadow:  10px 10px 20px #c46c6c,
+                -10px -10px 20px #ff9292;
+}
+
+.res-icon {
+    height: 18px;
+    width: 18px;
+}
+
+#creater-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.user-in-skin-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 200px;
+    font-size: 30px;
+    padding: 5px;
+    margin-left: 10px;
+
+    border-radius: 5px;
+    background: #ecf0fe;
+    box-shadow:  5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
+}
+
+#skin-id-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200px;
+    padding: 10px;
+}
+
+#skin_id {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    border: none;
+    padding: 10px;
+
+    margin-left: 10px;
+    border-radius: 5px;
+    background: #ecf0fe;
+    box-shadow:  5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
+}
+
+.user-icon {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background: #ecf0fe;
+    box-shadow:  5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  top: auto;
+  bottom: 0;
+
+  height: 40px;
+  width: 120px;
+  padding: 5px;
+  margin: 20px;
+  border-radius: 10px;
+  background: #b10202;
+  box-shadow:  5px 5px 10px #960202,
+              -5px -5px 10px #cc0202;
+  color: white;
+}

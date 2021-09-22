@@ -1,6 +1,8 @@
 from django.db import models
 
-from users.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 import os
 import uuid
@@ -21,6 +23,9 @@ class Skin(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=256, blank=True, null=True)
     skin_type = models.CharField(choices=SKIN_TYPE_CHOICES, max_length=1)
+    motif = models.CharField(max_length=64, blank=True, null=True)
+
+    like_count = models.IntegerField(default=0)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -30,3 +35,11 @@ class Skin(models.Model):
 
     def __str__(self):
         return str(self.skin_id)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    skin = models.ForeignKey(Skin, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return ("{} => {}".format(self.user, self.skin))

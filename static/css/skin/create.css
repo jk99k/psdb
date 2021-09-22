@@ -1,0 +1,40 @@
+input {
+    height: 40px;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+
+    border: none;
+    outline:none;
+    border-radius: 10px;
+    background: #ecf0fe;
+    box-shadow: inset 5px 5px 10px #c9ccd8,
+                inset -5px -5px 10px #ffffff;
+}
+
+select, label, button{
+    height: 40px;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+
+    color: cadetblue;
+
+    border-radius: 10px;
+    border: none;
+    background: #ecf0fe;
+    box-shadow:  4px 4px 8px #c9ccd8,
+                -4px -4px 8px #ffffff;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+form {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,118 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Pixel Strike Database(BETA)</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/basic/layout.css' %}">
+        <link rel="icon" type="image/png" href="{% static 'icons/icon.png' %}">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <a href="{% url 'home' %}">
+                <h1>Pixel Strike Database </h1>
+            </a>
+            <a href="{% url 'users_index' %}">
+                <div class="nav-item">
+                    User
+                </div>
+            </a>
+            <a href="{% url 'skins_index' %}">
+                <div class="nav-item">
+                    Skin
+                </div>
+            </a>
+            <a href="{% url 'skins_create' %}">
+                <div class="nav-item nav-action-button">
+                    Create Skin
+                </div>
+            </a>
+            <div id="nav-bottom">
+                {% if current_user.is_authenticated %}
+                    <a href="{% url 'users_edit' %}" id="current-user-wrapper">
+                        {% if current_user.icon %}
+                            <img src="{{MEDIA_URL}}{{current_user.icon}}" class="user-icon-mini" alt="">
+                            {{current_user.username}}
+                        {% else %}
+                            <div class="user-icon-mini user-icon-in-nav">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            {{current_user.username}}
+                        {% endif %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'users_create' %}" class="nav-item">
+                        Signup
+                    </a>
+                {% endif %}
+            </div>
+            <div id="header-right">
+                {% if current_user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="nav-item">
+                        Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-item">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+        <main>
+            <div id="main-contents">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+        <section>
+
+        </section>
+        <nav id="nav-mobile">
+            <a href="{% url 'home' %}">
+                <div class="nav-item-mobile">
+                    <i class="fas fa-home"></i>
+                </div>
+            </a>
+            <a href="{% url 'skins_index' %}">
+                <div class="nav-item-mobile">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+            </a>
+            <a href="{% url 'users_index' %}">
+                <div class="nav-item-mobile">
+                    <i class="fas fa-users"></i>
+                </div>
+            </a>
+            {% if current_user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-item">
+                    Logout
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-item">
+                    Login
+                </a>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <a href="{% url 'users_edit' %}" id="current-user-wrapper">
+                    {% if current_user.icon %}
+                        <img src="{{MEDIA_URL}}{{current_user.icon}}" class="user-icon-mini" alt="">
+                        {{current_user.username}}
+                    {% else %}
+                        <div class="user-icon-mini user-icon-in-nav">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {{current_user.username}}
+                    {% endif %}
+                </a>
+            {% else %}
+                <a href="{% url 'users_create' %}" class="nav-item">
+                    Signup
+                </a>
+            {% endif %}
+        </nav>
+</html>

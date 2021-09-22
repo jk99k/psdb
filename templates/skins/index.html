@@ -1,17 +1,68 @@
+{% extends "../basic/layout.html" %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/skins/index.css' %}">
-    </head>
-    <header>
-        <h1>Skin</h1>
-    </header>
-    {% if skins %}
-        <ul>
-            {% for skin in skins %}
-                <li><p>{{ skin.skin_id}}</p></li>
-                <img src="{{ MEDIA_URL }}{{ skin.image }}" alt="">
-            {% endfor %}
-        </ul>
-    {% endif %}
-</html>
+{% block content %}
+    <html>
+        <head>
+            <link rel="stylesheet" href="{% static 'css/skin/index.css' %}">
+        </head>
+        <body>
+            <div class="search-wrapper">
+                <form method="get" action="{% url 'skins_index' %}">
+                    {% csrf_token %}
+                    <input type="search" placeholder="Search..." name="query" value="{{ request.GET.query }}" class="neu-input">
+                    <input type="number" placeholder="Skin ID" name="skinid" value="{{ request.get.query }}" class="neu-input">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+                <div id="skin-list">
+                    {% if skins %}
+                        {% for skin in skins %}
+                            <a href="{% url 'skins_detail' skin.pk %}"">
+                                <object>
+                                    <div id="skin-item">                                
+                                        <div id="skin-status">
+                                            <p id="skin-name">{{ skin.name }}</p>
+                                            <p id="skin-description">{{ skin.description }}</p>
+                                            
+                                            {% if skin.skin_type == "1" %}
+                                                <div id="low-res">
+                                                    <img src="{% static 'icons/low-res.jpg'%}" class="res-icon" alt="">
+                                                    <p>Low-res</p>
+                                                </div>
+                                            {% else %}
+                                                <div id="high-res">
+                                                    <img src="{% static 'icons/high-res.jpg'%}" class="res-icon" alt="">
+                                                    <p>High-res</p>
+                                                </div>
+                                            {% endif %}
+                                                
+                                            <a href="{% url 'users_detail' skin.author.username %}" id="last">
+                                                <div class="user-in-skin-item">    
+                                                    {% if skin.author.icon %}
+                                                        <img src="{{ MEDIA_URL }}{{ skin.author.icon }}" class="user-icon-mini" alt="">
+                                                    {% else %}
+                                                        <div class="user-icon-mini">
+                                                            <i class="fas fa-user"></i>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div>
+                                                        {{skin.author.username}}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <img src="{{ MEDIA_URL }}{{ skin.image }}" id="skin-image" alt="">
+                                    </div>
+                                </object>    
+                            </a>    
+                        {% endfor %} 
+                    {% endif %}
+                </div>
+                <a href="{% url 'skins_create' %}">
+                    <div id="create-skin-mobile">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </a>
+        </body>
+    </html>
+{% endblock %}

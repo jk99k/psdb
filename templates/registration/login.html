@@ -1,46 +1,75 @@
 <!DOCTYPE html>
+{% load static %}
 
 <html>
     <head>
         <title>Login</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/basic/login.css' %}">
+        <link rel="icon" type="image/png" href="{% static 'icons/icon.png' %}">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     </head>
 
     <body>
-        {% block content %}
-
-        {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
-
-        {% if next %}
-            {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
-            {% else %}
-            <p>Please login to see this page.</p>
+        <div id="login">
+            <h1>Login</h1>
+            {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
             {% endif %}
-        {% endif %}
 
-        <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        </table>
+            {% if next %}
+                {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+                {% else %}
+                <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
 
-        <input type="submit" value="login">
-        <input type="hidden" name="next" value="{{ next }}">
-        </form>
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            </table>
 
-        {# Assumes you setup the password_reset view in your URLconf #}
-        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+            <input type="submit" value="login">
+            <input type="hidden" name="next" value="{{ next }}">
+            </form>
 
-        {% endblock %}
+            {# Assumes you setup the password_reset view in your URLconf #}
+            <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+            <footer>
+                <div class="footer-item">
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'about' %}">
+                        About
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'mod_recruitment' %}">
+                        Recruitment
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'suggestions' %}">
+                        Suggestions
+                    </a>
+                </div>
+            </footer>
+        </div>
     </body>
 </html>

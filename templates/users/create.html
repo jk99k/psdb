@@ -1,14 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Create User</title>
+        <link rel="stylesheet" href="{% static 'css/users/create.css' %}">
+        <link rel="icon" type="image/png" href="{% static 'icons/icon.png' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     </head>
 
     <body>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
-        </form>
+        <div id="signup-wrapper">
+            <h1 id="catch">Create your account</h1>
+            <h3 id="sub-catch">You can upload your skins and like other skins.</h5>
+            <form method="POST" action="{% url 'users_create' %}">
+                {% csrf_token %}
+                <p class="error-message"> 
+                    {{ form.username.errors }}
+                </p>
+                {{ form.username }}
+                <p class="error-message">
+                    {{ form.email.errors }}
+                </p>
+                {{ form.email }}
+                <p class="error-message">
+                    {{ form.password.errors }}
+                </p>
+                {{ form.password }}
+                <input type="submit" value="Submit">
+            </form>
+            <footer>
+                <div class="footer-item">
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'about' %}">
+                        About
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'mod_recruitment' %}">
+                        Recruitment
+                    </a>
+                </div>
+                <div class="footer-item">
+                    <a href="{% url 'suggestions' %}">
+                        Suggestions
+                    </a>
+                </div>
+            </footer>
+        </div>
     </body>
 </html>

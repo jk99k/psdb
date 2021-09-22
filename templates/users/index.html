@@ -1,45 +1,62 @@
+{% extends "../basic/layout.html" %}
 {% load static %}
-
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/basic/index.css' %}">
-        <link rel="stylesheet" href="{% static 'css/users/index.css' %}">
-    </head>
-
-    <body>
-        <!-- <header>
-            <a href="{% url 'home' %}">
-                <h1>Pixel Strike Database</h1>
-            </a>
-            <div id="h-right">
-                right
+{% block content %}
+    <html>
+        <head>
+            <link rel="stylesheet" href="{% static 'css/users/index.css' %}">
+        </head>
+        <body>
+            <div class="search-wrapper">
+                <form method="get" action="{% url 'users_index' %}">
+                    {% csrf_token %}
+                    <input type="search" placeholder="Search..." name="query" value="{{ request.GET.query }}">
+                    <input type="number" placeholder="Pixel Strike ID" name="psid" value="{{ request.get.query }}">
+                    <button type="submit">Search</button>
+                </form>
             </div>
-        </header> -->
-        <main>
-            <div id="main-contents">
-                {% if users %}
-                    <ul>
+                <div id="user-list">
+                    {% if users %}
                         {% for user in users %}
-                            <li><p>{{ user.username }}</p></li>
-                            <a href="{% url 'users_detail' user.username %}"">Detail</a>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </div>
-        </main>
-        <nav>
-            <a href="{% url 'home' %}">
-                <h1>Pixel Strike Database</h1>
-            </a>
-            <a href="{% url 'users_index' %}">
-                <div class="nav-item">
-                    User
+                            <a href="{% url 'users_detail' user.username %}"">
+                                <div id="user-item"> 
+                                    <div id="user-basic">
+                                        {% if user.icon %}
+                                            <img src="{{ MEDIA_URL }}{{ user.icon }}" class="user-icon" alt="">
+                                        {% else %}
+                                            <div class="user-icon">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                        {% endif %}
+                                        <p id="username">{{ user.username }}</p>
+                                        <div id="ps-id">
+                                            <p class="status">Pixel Strike ID: {{ user.pixel_strike_id }}</p>
+                                        </div>
+                                    </div>
+                                    <div id='user-status'>
+                                        <div id="when-started">
+                                            Started: {{ user.when_started }}
+                                        </div>
+                                        {% if user.youtube_channel %}
+                                            <div id="youtube" class="social">
+                                                <i class="fab fa-youtube"></i> Youtube
+                                            </div>
+                                        {% endif %}
+                                        {% if user.tiktok_account %}
+                                            <div id="tiktok" class="social">
+                                                <img src="{% static '/icons/tiktok.svg' %}" height="20px" alt=""> tiktok
+                                            </div>
+                                        {% endif %}
+                                        {% if user.discord_account %}
+                                            <div id="discord" class="social">
+                                                <i class="fab fa-discord"></i>Discord
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>        
+                            </a>
+                        {% endfor %} 
+                    {% endif %}
                 </div>
-            </a>
-            <a href="{% url 'skins_index' %}">
-                <div class="nav-item">
-                    Skin
-                </div>
-            </a>
-        </nav>
-</html>
+        </body>
+    </html>
+{% endblock %}

@@ -1,31 +1,103 @@
+{% extends "./layout.html"%}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/basic/index.css' %}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    </head>
-
-    <body>
-        <main>
-            <div class="neu-box1" id="list-item">
+{% block content%}
+    <html>
+        <head>
+            <link rel="stylesheet" href="{% static 'css/basic/index.css' %}">
+        </head>
+        <body>
+            <div id="home">
+                <h1>Home</h1>
+                <h2>Top5 Skins</h2>
+                <div id="top-skins-wrapper">
+                    <div id="skin-list">
+                        {% for skin in skins %}
+                            <a href="{% url 'skins_detail' skin.pk %}">
+                                <object data="" type="">
+                                    <div id="skin-item">
+                                        <div id="skin-status">
+                                            <p id="skin-name">{{ skin.name }}</p>
+                                            <p id="skin-description">{{ skin.description }}</p>
+                                            
+                                            {% if skin.skin_type == "1" %}
+                                                <div id="low-res">
+                                                    <img src="{% static 'icons/low-res.jpg'%}" class="res-icon" alt="">
+                                                    <p>Low-res</p>
+                                                </div>
+                                            {% else %}
+                                                <div id="high-res">
+                                                    <img src="{% static 'icons/high-res.jpg'%}" class="res-icon" alt="">
+                                                    <p>High-res</p>
+                                                </div>
+                                            {% endif %}
+                                                
+                                            <a href="{% url 'users_detail' skin.author.username %}" id="last">
+                                                <div class="user-in-skin-item">    
+                                                    {% if skin.author.icon %}
+                                                        <img src="{{ MEDIA_URL }}{{ skin.author.icon }}" class="user-icon-mini" alt="">
+                                                    {% else %}
+                                                        <div class="user-icon-mini">
+                                                            <i class="fas fa-user"></i>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div>
+                                                        {{skin.author.username}}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <img src="{{ MEDIA_URL }}{{ skin.image }}" id="skin-image" alt="">
+                                    </div>
+                                </object>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h2>Random Users</h2>
+                <div id="random-users-wrapper">
+                    <div id="user-list">
+                        {% for user in users %}
+                            <a href="{% url 'users_detail' user.username %}"">
+                                <div id="user-item"> 
+                                    <div id="user-basic">
+                                        {% if user.icon %}
+                                            <img src="{{ MEDIA_URL }}{{ user.icon }}" class="user-icon" alt="">
+                                        {% else %}
+                                            <div class="user-icon">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                        {% endif %}
+                                        <p id="username">{{ user.username }}</p>
+                                        <div id="ps-id">
+                                            <p class="status">Pixel Strike ID: {{ user.pixel_strike_id }}</p>
+                                        </div>
+                                    </div>
+                                    <div id='user-status'>
+                                        <div id="when-started">
+                                            Started: {{ user.when_started }}
+                                        </div>
+                                        {% if user.youtube_channel %}
+                                            <div id="youtube" class="social">
+                                                <i class="fab fa-youtube"></i> Youtube
+                                            </div>
+                                        {% endif %}
+                                        {% if user.tiktok_account %}
+                                            <div id="tiktok" class="social">
+                                                <img src="{% static '/icons/tiktok.svg' %}" height="20px" alt=""> tiktok
+                                            </div>
+                                        {% endif %}
+                                        {% if user.discord_account %}
+                                            <div id="discord" class="social">
+                                                <i class="fab fa-discord"></i>Discord
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>        
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-        </main>
-        <nav>
-            <a href="{% url 'home' %}">
-                <h1>Pixel Strike Database</h1>
-            </a>
-            <a href="{% url 'users_index' %}">
-                <div class="nav-item">
-                    User
-                </div>
-            </a>
-            <a href="{% url 'skins_index' %}">
-                <div class="nav-item">
-                    Skin
-                </div>
-            </a>
-        </nav>
-    </body>
-</html>
+        </body>
+    </html>
+{% endblock %}

@@ -1,5 +1,61 @@
-<html>
-    {% if user %}
-    <p>{{user.username}}</p>
-    {% endif %}
-</html>
+{% extends '../basic/layout.html' %}
+{% load static %}
+{% block content %}
+    <html>
+        <head>
+            <link rel="stylesheet" href="{% static 'css/users/detail.css' %}">
+        </head>
+
+        <body>
+            <a href="{% url 'users_index' %}" class="back">Back</a>
+            <div id="user-detail-wrapper">
+                {% if user.icon %}
+                    <img src="{{ MEDIA_URL }}{{ user.icon }}" class="user-icon" alt="">
+                        {% else %}
+                            <div class="user-icon">
+                                <i id="i" class="fas fa-user"></i>
+                            </div>
+                        {% endif %}
+                <p id="username">{{ user.username }}</p>
+                <p id="profile">{{ user.profile }}</p>
+                {% if 1 %}
+                    <div class="client">
+                        Client: Mobile
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                {% elif 2 %}
+                    <div class="client">
+                        Client: Tablet
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                {% else %}
+                    <div class="client">
+                        Client: PC
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                {% endif %}
+                <div id="ps-id">
+                    Pixel Strike ID: {{ user.pixel_strike_id }}
+                </div>
+                <div id="when-started">
+                    Started: {{ user.when_started }}
+                </div>
+                {% if user.youtube_channel %}
+                    <div id="youtube" class="social">
+                        <a href="{{ user.youtube_channel }}"><i class="fab fa-youtube"></i> Youtube</a>
+                    </div>
+                {% endif %}
+                {% if user.tiktok_account %}
+                    <div id="tiktok" class="social">
+                        <a href="{{ user.tiktok_account }}"><img src="{% static '/icons/tiktok.svg' %}" height="20px" alt=""> tiktok</a>
+                    </div>
+                {% endif %}
+                {% if user.discord_account %}
+                    <div id="discord" class="social">
+                        <i class="fab fa-discord"></i> <p> {{ user.discord_account }}</p>
+                    </div>
+                {% endif %} 
+            </div>
+        </body>
+    </html>
+{% endblock %}

@@ -17,16 +17,18 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from basic.views import index
+from basic.views import about, index, mod_r, suggestions
 from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),
+    path('about/', about, name='about'),
     path('users/', include('users.urls')),
     path('skins/', include('skins.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('mod-recruitment/', mod_r, name='mod_recruitment'),
+    path('suggestions/', suggestions, name='suggestions'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

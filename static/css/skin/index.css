@@ -1,26 +1,26 @@
-#home {
-    position: absolute;
-    top: 0;
-    left: 0;
+.search-wrapper {
     width: 100%;
-    height: 100%;
-}
+    height: 80px;
+    padding: 20px 10px 10px 10px;
+    z-index: 3;
 
-#home h1 {
-    padding: 20px;
-}
+    position: fixed;
+    top: 0;
+    left: 200px;
 
-h2 { 
-    padding: 10px;
-    margin-left: 30px;
+    background: #ecf0fe;
+    box-shadow: 10px 10px 20px #c9ccd8,
+                -10px -10px 20px #ffffff;
 }
 
 #skin-list {
+    position: absolute;
+    top: 100px;
+    padding-bottom: 120px;
     display: flex;
     flex-direction: row;
-    white-space: normal;
-    overflow-x: scroll;
-    padding: 15px;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 #skin-item {
@@ -29,7 +29,6 @@ h2 {
     justify-content: space-between;
 
     width: 300px;
-    min-width: 300px;
     height: 200px;
     border-radius: 20px;
     background: #ecf0fe;
@@ -146,80 +145,88 @@ h2 {
                 -5px -5px 10px #ffffff;
 }
 
-#user-list {
+.neu-input {
+    height: 40px;
+    width: 100px;
+    padding: 10px;
+    margin: 0 10px 0 10px;
+
+    border: none;
+    outline:none;
+    border-radius: 10px;
+    background: #ecf0fe;
+    box-shadow: inset 5px 5px 10px #c9ccd8,
+                inset -5px -5px 10px #ffffff;
+}
+
+form button {
+    border: none;
+
+    border-radius: 10px;
+    height: 40px;
+    width: 80px;
+
+    background: linear-gradient(145deg, #fdffff, #d4d8e5);
+    box-shadow:  5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
+}
+
+form button:hover {
+    background: linear-gradient(145deg, #d4d8e5, #fdffff);
+    box-shadow: 5px 5px 10px #c9ccd8,
+                -5px -5px 10px #ffffff;
+}
+
+#create-skin-mobile {
+    display: none;
+}
+
+#discord {
     display: flex;
-    flex-direction: row;
+}
+
+@media (max-width:520px) {
+    .search-wrapper {
+        width: 100%;
+        height: 80px;
+        padding: 20px 10px 10px 10px;
+        z-index: 3;
     
-    overflow-x: scroll;
-    padding-bottom: 120px;
-    padding: 15px;
-}
+        position: fixed;
+        top: 0;
+        left: 0;
+    
+        background: #ecf0fe;
+        box-shadow: 10px 10px 20px #c9ccd8,
+                    -10px -10px 20px #ffffff;
+    }
 
-#user-item {
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    height: 150px;
-    border-radius: 20px;
-    background: #ecf0fe;
-    box-shadow:  10px 10px 20px #d4d8e5,
-                -10px -10px 20px #ffffff;
+    #skin-list {
+        display: flex;
+        top: 80px;
+        justify-content: center;
+        height: calc(100vh - 140px);
+    }
 
-    transition: 0.1s;
-    transition-timing-function: ease;
+    #create-skin-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: auto;
+        bottom: 100px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
 
-    margin: 10px 15px 10px 15px;
-    padding: 20px;
-}
+        border-radius: 50%;
+        background: #dd5555;
+        box-shadow:  20px 20px 40px #bc4848,
+                     -20px -20px 40px #fe6262;
+    }
 
-#user-item:hover {
-    box-shadow:  15px 15px 30px #d4d8e5,
-                -15px -15px 30px #ffffff;
-}
-
-.social {
-    display: flex;
-    align-items: center;
-    padding: 3px 0 3px 0;
-}
-
-
-.user-icon {
-    width: 50px;
-    height: 50px;
-    padding: 2px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    background: #ecf0fe;
-    box-shadow:  5px 5px 10px #c9ccd8,
-                -5px -5px 10px #ffffff;
-}
-
-.status {
-    font-size: 12px;
-}
-
-#username {
-    font-size: 25px;
-}
-
-
-.user-icon-mini {
-    width: 30px;
-    height: 30px;
-
-    padding: 2px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    background: #ecf0fe;
-    box-shadow:  5px 5px 10px #c9ccd8,
-                -5px -5px 10px #ffffff;
+    #create-skin-mobile i {
+        font-size: 20px;
+        color: white;
+    }
 }

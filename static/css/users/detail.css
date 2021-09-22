@@ -1,0 +1,147 @@
+#user-detail-wrapper {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    padding: 5px;
+    border-radius: 50%;
+    background: #ecf0fe;
+    box-shadow:  20px 20px 40px #c9ccd8,
+                -20px -20px 40px #ffffff;
+}
+
+#i {
+    position: relative;
+    top: -40px;
+    left: -25px;
+    font-size: 90px;
+}
+
+.user-icon img i {
+    height: 200px;
+    width: 200px;
+}
+
+#username {
+    margin-top: 30px;
+    font-size: 50px;
+}
+
+#profile {
+    font-size: 20px;
+}
+
+.client {
+    margin-top: 20px;
+}
+
+.client i {
+    color: #000000;
+}
+
+#ps-id {
+    margin-top: 15px;
+}
+
+#when-started {
+    margin-top: 15px;
+}
+
+#youtube {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    background: #e62117;
+    box-shadow:  5px 5px 10px #c41c14,
+                -5px -5px 10px #ff261a;
+    border-radius: 5px;
+}
+
+#tiktok {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    background: #000000;
+    box-shadow:  5px 5px 10px #000000,
+                -5px -5px 10px #000000;
+    border-radius: 5px;
+}
+
+#discord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    background: #7289da;
+    box-shadow:  5px 5px 10px #7289da,
+                -5px -5px 10px #7289da;
+    border-radius: 5px;
+}
+
+#discord p {
+    display: flex;
+    align-items: center;
+}
+
+.social * {
+    color: white;
+}
+
+.back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    position: relative;
+    bottom: 0;
+    right: 0;
+    height: 40px;
+    width: 120px;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+  
+    background: #95939f;
+    box-shadow:  5px 5px 10px #7f7d87,
+                -5px -5px 10px #aba9b7;
+  
+    color: white;
+}
+
+/* .delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    top: auto;
+    bottom: 0;
+  
+    height: 40px;
+    width: 120px;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+  
+    background: #95939f;
+    box-shadow:  5px 5px 10px #7f7d87,
+                -5px -5px 10px #aba9b7;
+  
+    color: white;
+  } */

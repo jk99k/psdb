@@ -1,6 +1,94 @@
-<html>
-    {% if skin %}
-    <p>{{skin.name}}</p>
-    <img src={{skin.image}} alt="">
-    {% endif %}
-</html>
+{% extends '../basic/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <html>
+        <head>
+            <title>{{skin.name}}</title>
+            <link rel="stylesheet" href="{% static 'css/skin/detail.css' %}">
+        </head>
+        <body>
+            <h2>Skin detail</h2>
+            <a href="{% url 'skins_index' %}" class="back">
+                Back
+            </a>
+            {% if is_author %}
+                <form action="{% url 'skins_delete' skin.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type='submit' id="delete-btn" class="delete">Delete</button>
+                </form>
+            {% endif %}
+            <div id="skin-wrapper">    
+                <img src="{{ MEDIA_URL }}{{ skin.image }}" id="skin-image" alt="">                    
+                <div id="skin-status">
+                    <div id="top-wrapper">
+                        <p id="skin-name">{{ skin.name }}</p>
+                        <form method="POST" action="{% url 'skins_like' skin.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="heart-button">
+                                <i class="fas fa-heart"></i>
+                                {{likes_count}}
+                            </button>
+                        </form>
+                    </div>
+                    <div id="description-wrapper">
+                        <p>Description:</p>
+                        <p id="skin-description">{{ skin.description }}</p>
+                    </div>
+                    <div id="skin-id-wrapper">
+                        <p>Skin ID:</p>
+                        <input id="skin_id" onclick="copyIdToClipboard()" readonly value={{skin.skin_id}}>
+                        </input>
+                    </div>
+                    <div id="type-wrapper">
+                        Skin type:
+                        {% if skin.skin_type == "1" %}
+                            <div id="low-res">
+                                <img src="{% static 'icons/low-res.jpg'%}" class="res-icon" alt="">
+                                <p>Low-res</p>
+                            </div>
+                        {% else %}
+                            <div id="high-res">
+                                <img src="{% static 'icons/high-res.jpg'%}" class="res-icon" alt="">
+                                <p>High-res</p>
+                            </div>
+                        {% endif %}  
+                    </div>                  
+                    {% if skin.author.icon %}
+                        <div id="creater-wrapper">
+                            Creator:
+                            <a href="{% url 'users_detail' skin.author.username %}">
+                                <div class="user-in-skin-item">
+                                    <img src="{{ MEDIA_URL }}{{ skin.author.icon }}" class="user-icon" alt="">
+                                    {{skin.author.username}}
+                                </div>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="user-in-skin-item">
+                            <div class="user-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            {{skin.author.username}}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <script>
+                function copyIdToClipboard() {
+                    const copyTarget = document.getElementById("skin_id");
+                    copyTarget.select();
+                    document.execCommand('Copy');
+                    alert("Copied skin ID!")
+                }
+
+                const btn = document.getElementById('delete-btn');
+                btn.addEventListener('click', function() {
+                    alert('Deleted skin succesfully.')
+                })
+            </script>
+        </body>
+    </html>
+    
+{% endblock content %}
+    
